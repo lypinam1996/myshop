@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171207194931) do
+ActiveRecord::Schema.define(version: 20171211174409) do
 
   create_table "authors", force: :cascade do |t|
     t.string "fullname", default: "Not specified", null: false
@@ -18,28 +18,12 @@ ActiveRecord::Schema.define(version: 20171207194931) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "books", force: :cascade do |t|
-    t.string "title", default: "Not specified", null: false
-    t.integer "price", default: 0, null: false
-    t.integer "author"
-    t.integer "count", default: 0, null: false
-    t.integer "pages", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "products", force: :cascade do |t|
-    t.string "title", default: "Not specified", null: false
-    t.integer "price", default: 0, null: false
-    t.integer "author"
-    t.integer "count", default: 0, null: false
-    t.integer "pages", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "roles", force: :cascade do |t|
-    t.string "title", default: "user", null: false
+  create_table "productions", force: :cascade do |t|
+    t.string "title", null: false
+    t.integer "price", null: false
+    t.integer "author_id", null: false
+    t.integer "count"
+    t.integer "pages", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -48,7 +32,7 @@ ActiveRecord::Schema.define(version: 20171207194931) do
     t.string "email", default: "Not specified", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "full_name"
-    t.integer "role"
+    t.boolean "role", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "remember_created_at"

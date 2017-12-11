@@ -1,0 +1,49 @@
+<div class="container">
+<div class="row">
+        <div class="col-md-8 col-md-offset-4"><%= form_with(model: production, local: true) do |form| %>
+  <% if production.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(production.errors.count, "error") %> prohibited this production from being saved:</h2>
+
+      <ul>
+      <% production.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :production_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.number_field :price, id: :production_price %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :author_id %>
+    <%= form.select(:author_id) do %>
+      <% @authors.each do |author1| %>
+        <%= content_tag(:option, author1.fullname, value: author1.id) %>
+     <% end %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :count %>
+    <%= form.number_field :count, id: :production_count %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pages %>
+    <%= form.number_field :pages, id: :production_pages %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %></div></div></div>

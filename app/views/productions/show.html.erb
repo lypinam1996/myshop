@@ -1,0 +1,31 @@
+<div class="container">
+<div class="row">
+<div class="col-md-9 col-md-offset-4"><p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @production.title %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @production.price %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @production.author_id %>
+</p>
+
+<p>
+  <strong>Count:</strong>
+  <%= @production.count %>
+</p>
+
+<p>
+  <strong>Pages:</strong>
+  <%= @production.pages %>
+</p>
+
+<% if current_user && current_user.role? %><%= link_to 'Edit', edit_production_path(@production) %> |<% end %>
+<%= link_to 'Back', productions_path %></div></div></div>
