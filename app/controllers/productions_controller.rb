@@ -20,6 +20,7 @@ class ProductionsController < ApplicationController
 
   # GET /productions/1/edit
   def edit
+    @authors = Author.all
   end
 
   # POST /productions
