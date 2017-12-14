@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :productions
+  resources :baskets
+  resources :productions do
+    resources :users do
+    	resources :baskets
+        end
+  end
   resources :authors
   devise_for :users
   resources :users, except: [ :new, :create, :destroy ]

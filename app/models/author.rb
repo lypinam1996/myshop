@@ -1,3 +1,3 @@
 class Author < ApplicationRecord
-  has_many :productions
+  has_many :productions, dependent: :destroy
 end

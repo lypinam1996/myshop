@@ -5,6 +5,8 @@ class ProductionsController < ApplicationController
   # GET /productions.json
   def index
     @productions = Production.all
+    @users = User.all
+    @baskets = Basket.all
   end
 
   # GET /productions/1
