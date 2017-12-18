@@ -1,3 +1,4 @@
+require 'net/http'
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
@@ -40,12 +41,19 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    @productions = Production.all
+    url = 'https://sms.ru/sms/send?api_id=61BEDD63-465C-25F5-9AD4-6E58B45B31DF&to='+@user.telephone+'&msg='+@user.id.to_s+'&json=1'
+    uri = URI.parse(url)
+    if @user.full_name == nil
+    response = Net::HTTP.get_response(uri)
+end
+    @user.update(user_params)
     respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+      if @user.full_name == @user.id.to_s
+        format.html { redirect_to "/users/sign_in", notice:"Your phone number was successfully verified"}
         format.json { render :show, status: :ok, location: @user }
       else
-        format.html { render :edit }
+        format.html { render :edit, notice:"Incorrect code"}
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
