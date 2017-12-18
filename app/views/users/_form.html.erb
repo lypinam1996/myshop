@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-   <div class="field">
+  <div class="field">
     <%= form.label :email %>
     <%= form.text_field :email, id: :user_email %>
   </div>
@@ -26,10 +26,14 @@
     <%= form.password_field :password_confirmation, id: :user_password_confirmation %>
   </div>
 
+  <div class="field">
+    <%= form.label :full_name %>
+    <%= form.text_field :full_name, id: :user_full_name %>
+  </div>
 
   <div class="field">
-    <%= form.label :"Input text from the sms" %>
-    <%= form.text_field :full_name, id: :user_full_name %>
+    <%= form.label :role %>
+    <%= form.number_field :role, id: :user_role %>
   </div>
 
   <div class="actions">

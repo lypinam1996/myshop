@@ -24,10 +24,14 @@
   </div>
 
   <div class="field">
-    <%= f.label :telephone %>
-    <%= f.text_field :telephone %>
+    <%= f.label :full_name %>
+    <%= f.text_field :full_name %>
   </div>
 
+  <div class="field">
+    <%= f.label :role %>
+    <%= f.number_field :role %>
+  </div>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
