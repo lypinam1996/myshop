@@ -24,21 +24,34 @@ class BasketsController < ApplicationController
   # POST /baskets
   # POST /baskets.json
   def create
+
+
 @basket = Basket.new
-@basket = Basket.new(params.permit(:production_id, :user_id))
-
-
-
-    respond_to do |format|
-      if @basket.save
-        format.html { redirect_to @basket, notice: 'Basket was successfully created.' }
-        format.json { render :show, status: :created, location: @basket }
-      else
-        format.html { render :new }
-        format.json { render json: @basket.errors, status: :unprocessable_entity }
-      end
+@basket = Basket.new(params.permit(:production_id, :user_id, :count))
+@baskets = Basket.all
+#respond_to do |format|
+  #Basket.update(:user_id => @baskets[i].user_id, :production_id => @baskets[i].production_id, :count => @baskets[i].count+1)
+#  format.html { redirect_to "/", notice: @baskets[0].user_id}
+#end
+respond_to do |format|
+  if @baskets.count==0
+     @basket.save
+  else
+    i=0
+    while @baskets.count>i && (@baskets[i].user_id!=@basket.user_id || @baskets[i].production_id!=@basket.production_id)
+      i+=1
+    end
+    if  i!=@baskets.count
+      Basket.update(@baskets[i].id, :user_id => @baskets[i].user_id, :production_id => @baskets[i].production_id, :count => @baskets[i].count+1)
+    else
+        @basket.save
     end
   end
+    format.html { redirect_to "/", notice: @baskets.count}
+  end
+end
+
+
 
   # PATCH/PUT /baskets/1
   # PATCH/PUT /baskets/1.json
