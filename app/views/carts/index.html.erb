@@ -17,7 +17,7 @@
       <tr>
         <td><%= cart.production.title %></td>
         <td><%= cart.count %></td>
-        <td><%= cart.sum %></td>
+        <td><%= number_to_currency(cart.sum) %></td>
         <td><%= link_to 'Show', cart %></td>
         <td><%= link_to 'Buy', edit_cart_path(cart) %></td>
         <td><%= link_to 'Destroy', cart, method: :delete, data: { confirm: 'Are you sure?' } %></td>

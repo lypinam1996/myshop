@@ -2,9 +2,11 @@
 
 <h1>Welcome to our shop. Here you can choose and buy any book.</h1>
 <% if current_user && current_user.role? %><%= link_to 'Home', users_path %> <br><% end %>
-<% if current_user && !current_user.role? %><%= link_to 'Home', carts_path %> <br><% end %>
+<% if current_user && !current_user.role? %><%= link_to 'Home', user_carts_path(current_user) %> <br><% end %>
 <%= link_to 'Show all authors', authors_path %><br>
 <% if current_user && current_user.role? %><%= link_to 'New book', new_production_path %><br><% end %>
+
+
 <table>
   <thead>
     <tr>
@@ -21,7 +23,7 @@
     <% @productions.each do |production| %>
       <tr>
         <td><%= production.title %></td>
-        <td><%= production.price %></td>
+        <td><%= number_to_currency(production.price) %></td>
         <td><%= production.author.fullname %></td>
         <td><%= production.count %></td>
         <td><%= production.pages %></td>

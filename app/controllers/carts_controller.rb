@@ -54,13 +54,15 @@ class CartsController < ApplicationController
   def update
 
     respond_to do |format|
-      if @cart.update(cart_params) && @cart.production.count>@cart.count
+      if @cart.update(cart_params) && @cart.production.count!=nil && @cart.production.count>@cart.count
         @history = History.new()
-        @history = History.new(params.permit(:production_id, :user_id, :count, :sum))
+        @history.production=@cart.production
+        @history.user=@cart.user
+        @history.count=@cart.count
+        @history.sum=@cart.count*@cart.sum
         @history.save
-        History.update(@history.id, :user => @cart.user, :production=> @cart.production,  :count =>@cart.count, :sum =>@cart.count*@cart.sum)
         @cart.destroy
-        format.html { redirect_to "/carts", notice: "Thank you for your purchase" }
+        format.html { redirect_to "/histories", notice: "Thank you for your purchase" }
       else
         format.html { redirect_to "/carts", notice: "The quantity of the book exceeds quantity at the warehouse" }
         format.html { render :edit}

@@ -22,7 +22,7 @@
     <% @productions.each do |production| %>
       <tr>
         <td><%= production.title %></td>
-        <td><%= production.price %></td>
+        <td><%= number_to_currency(production.price) %></td>
         <td><%= production.author.fullname %></td>
         <td><%= production.count %></td>
         <td><%= production.pages %></td>

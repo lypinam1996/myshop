@@ -18,12 +18,12 @@
       <tr>
         <td><%= history.production.title %></td>
         <td><%= history.count %></td>
-        <td><%= history.sum %></td>
+        <td><%= number_to_currency(history.sum) %></td>
         <td><%= history.updated_at %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <%= link_to 'Main page', productions_path %><br>
-<%= link_to 'Home', carts_path %>
+<%= link_to 'Home', user_carts_path(current_user) %>
 </div>
