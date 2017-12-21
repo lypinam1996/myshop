@@ -6,7 +6,7 @@ class ProductionsController < ApplicationController
   def index
     @productions = Production.all
     @users = User.all
-    @baskets = Basket.all
+    @carts = Cart.all
   end
 
   # GET /productions/1

@@ -1,0 +1,42 @@
+<div class="container">
+<div class="row">
+        <div class="col-md-8 col-md-offset-4"><%= form_with(model: cart, local: true) do |form| %>
+  <% if cart.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(cart.errors.count, "error") %> prohibited this cart from being saved:</h2>
+
+      <ul>
+      <% cart.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.hidden_field :user_id, id: :cart_user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :production_id %>
+    <%= form.hidden_field :production_id, id: :cart_production_id%>
+    <%= fields_for @cart.production do |f1| %>
+      <%= f1.text_field :title %>
+    <% end %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :count %>
+    <%= form.number_field :count, id: :cart_count %>
+  </div>
+
+  <div class="field">
+    <%= form.hidden_field :sum %>
+    <%= form.hidden_field :sum, id: :cart_sum %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>  </div>  </div>  </div>

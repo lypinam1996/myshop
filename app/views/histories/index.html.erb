@@ -1,0 +1,29 @@
+<div class="container"><p id="notice"><%= notice %></p>
+
+<h1>Histories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Production</th>
+      <th>Count</th>
+      <th>Sum</th>
+      <th>Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @histories.each do |history| %>
+      <tr>
+        <td><%= history.production.title %></td>
+        <td><%= history.count %></td>
+        <td><%= history.sum %></td>
+        <td><%= history.updated_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'Main page', productions_path %><br>
+<%= link_to 'Home', carts_path %>
+</div>

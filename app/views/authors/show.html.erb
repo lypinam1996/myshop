@@ -6,6 +6,7 @@
   <strong>Fullname:</strong>
   <%= @author.fullname %><br>
 </p>
+<% if  @productions.count!=0%>
 <table>
   <thead>
     <tr>
@@ -17,7 +18,7 @@
       <th colspan="3"></th>
     </tr>
   </thead>
- <tbody>
+   <tbody>
     <% @productions.each do |production| %>
       <tr>
         <td><%= production.title %></td>
@@ -29,6 +30,7 @@
     <% end %>
   </tbody>
 </table>
+<% end %>
 <br>
 
 <% if current_user && current_user.role? %><%= link_to 'Edit author', edit_author_path(@author) %> |<% end %>

@@ -1,0 +1,31 @@
+<div class="container"><p id="notice"><%= notice %></p>
+
+<h1>Books</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Production</th>
+      <th>Count</th>
+      <th>Sum</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @carts.each do |cart| %>
+      <tr>
+        <td><%= cart.production.title %></td>
+        <td><%= cart.count %></td>
+        <td><%= cart.sum %></td>
+        <td><%= link_to 'Show', cart %></td>
+        <td><%= link_to 'Buy', edit_cart_path(cart) %></td>
+        <td><%= link_to 'Destroy', cart, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'Show history', histories_path %><br>
+<%= link_to 'Main page', productions_path %></div>

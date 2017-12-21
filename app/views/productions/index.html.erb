@@ -2,7 +2,7 @@
 
 <h1>Welcome to our shop. Here you can choose and buy any book.</h1>
 <% if current_user && current_user.role? %><%= link_to 'Home', users_path %> <br><% end %>
-<% if current_user && !current_user.role? %><%= link_to 'Home', baskets_path %> <br><% end %>
+<% if current_user && !current_user.role? %><%= link_to 'Home', carts_path %> <br><% end %>
 <%= link_to 'Show all authors', authors_path %><br>
 <% if current_user && current_user.role? %><%= link_to 'New book', new_production_path %><br><% end %>
 <table>
@@ -26,7 +26,7 @@
         <td><%= production.count %></td>
         <td><%= production.pages %></td>
         <td><%= link_to 'Show', production %></td>
-        <% if current_user  && !current_user.role? %><td><%= link_to 'Add into basket', production_user_baskets_path(production.id, current_user), method: :create, data: { confirm: 'Are you sure?' } %></td><% end %>
+        <% if current_user  && !current_user.role? %><td><%= link_to 'Add into basket', production_user_carts_path(production.id, current_user), method: :create, data: { confirm: 'Are you sure?' } %></td><% end %>
         <% if current_user && current_user.role? %><td><%= link_to 'Edit', edit_production_path(production) %></td><% end %>
         <% if current_user && current_user.role? %><td><%= link_to 'Destroy', production, method: :delete, data: { confirm: 'Are you sure?' } %></td><% end %>
       </tr>
@@ -34,5 +34,3 @@
   </tbody>
 </table>
 </div></div></div>
-
-

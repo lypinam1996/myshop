@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  resources :baskets
+  resources :carts
+  resources :histories
+  resources :carts
   resources :productions do
     resources :users do
-    	resources :baskets
+    	resources :carts
         end
   end
   resources :authors
