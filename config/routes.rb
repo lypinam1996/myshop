@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :carts
-  resources :histories
+  resources :histories,  except: [ :destroy, :show, :edit, :update]
   resources :carts
   resources :productions do
     resources :users do

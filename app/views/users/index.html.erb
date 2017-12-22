@@ -21,11 +21,9 @@
         <td><%= user.role %></td>
         <td><%= link_to 'Show', user %></td>
         <% if current_user && current_user.role? && !user.role? %><td><%= link_to 'Edit', edit_user_path(user) %></td><% end %>
-        <% if current_user && current_user.role? && !user.role? %><td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td><% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 <%= link_to 'Main page', productions_path %>
 </div>
-

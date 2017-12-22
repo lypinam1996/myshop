@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171221193559) do
+ActiveRecord::Schema.define(version: 20171222094437) do
 
   create_table "authors", force: :cascade do |t|
     t.string "fullname", default: "Not specified", null: false
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20171221193559) do
   end
 
   create_table "productions", force: :cascade do |t|
-    t.string "title", default: " ", null: false
+    t.string "title", default: "Not specified", null: false
     t.integer "price", default: 0, null: false
     t.integer "author_id", null: false
     t.integer "count"

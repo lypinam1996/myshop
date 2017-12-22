@@ -14,16 +14,19 @@ class AuthorsController < ApplicationController
 
   # GET /authors/new
   def new
+    redirect_to "/", notice: "Sorry, You don't have enough rights" if current_user.nil? || !current_user.role?
     @author = Author.new
   end
 
   # GET /authors/1/edit
   def edit
+    redirect_to "/", notice: "Sorry, You don't have enough rights" if current_user.nil? || !current_user.role?
   end
 
   # POST /authors
   # POST /authors.json
   def create
+    redirect_to "/", notice: "Sorry, You don't have enough rights" if current_user.nil? || !current_user.role?
     @author = Author.new(author_params)
 
     respond_to do |format|
@@ -40,6 +43,7 @@ class AuthorsController < ApplicationController
   # PATCH/PUT /authors/1
   # PATCH/PUT /authors/1.json
   def update
+    redirect_to "/", notice: "Sorry, You don't have enough rights" if current_user.nil? || !current_user.role?
     respond_to do |format|
       if @author.update(author_params)
         format.html { redirect_to @author, notice: 'Author was successfully updated.' }
@@ -54,6 +58,7 @@ class AuthorsController < ApplicationController
   # DELETE /authors/1
   # DELETE /authors/1.json
   def destroy
+    redirect_to "/", notice: "Sorry, You don't have enough rights" if current_user.nil? || !current_user.role?
     @author.destroy
     respond_to do |format|
       format.html { redirect_to authors_url, notice: 'Author was successfully destroyed.' }

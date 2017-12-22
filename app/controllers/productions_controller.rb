@@ -16,18 +16,21 @@ class ProductionsController < ApplicationController
 
   # GET /productions/new
   def new
+    redirect_to "/", notice: "Sorry, You don't have enough rights" if current_user.nil? || !current_user.role?
     @production = Production.new
     @authors = Author.all
   end
 
   # GET /productions/1/edit
   def edit
+    redirect_to "/", notice: "Sorry, You don't have enough rights" if current_user.nil? || !current_user.role?
     @authors = Author.all
   end
 
   # POST /productions
   # POST /productions.json
   def create
+    redirect_to "/", notice: "Sorry, You don't have enough rights" if current_user.nil? || !current_user.role?
     @production = Production.new(production_params)
 
     respond_to do |format|
@@ -44,6 +47,7 @@ class ProductionsController < ApplicationController
   # PATCH/PUT /productions/1
   # PATCH/PUT /productions/1.json
   def update
+    redirect_to "/", notice: "Sorry, You don't have enough rights" if current_user.nil? || !current_user.role?
     respond_to do |format|
       if @production.update(production_params)
         format.html { redirect_to @production, notice: 'Production was successfully updated.' }
@@ -58,6 +62,7 @@ class ProductionsController < ApplicationController
   # DELETE /productions/1
   # DELETE /productions/1.json
   def destroy
+    redirect_to "/", notice: "Sorry, You don't have enough rights" if current_user.nil? || !current_user.role?
     @production.destroy
     respond_to do |format|
       format.html { redirect_to productions_url, notice: 'Production was successfully destroyed.' }

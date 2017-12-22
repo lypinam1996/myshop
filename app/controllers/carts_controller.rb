@@ -4,6 +4,7 @@ class CartsController < ApplicationController
   # GET /carts
   # GET /carts.json
   def index
+    redirect_to "/", notice: "Sorry, You don't have enough rights" if current_user.nil? || current_user.role?
     @user=current_user
     @carts = Cart.where(user: @user)
     @carts = Cart.all
@@ -12,20 +13,24 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.json
   def show
+      redirect_to "/", notice: "Sorry, You don't have enough rights" if current_user.nil? || current_user.role?
   end
 
   # GET /carts/new
   def new
+    redirect_to "/", notice: "Sorry, You don't have enough rights" if current_user.nil? || current_user.role?
     @cart = Cart.new
   end
 
   # GET /carts/1/edit
   def edit
+    redirect_to "/", notice: "Sorry, You don't have enough rights" if current_user.nil? || current_user.role?
   end
 
   # POST /carts
   # POST /carts.json
   def create
+    redirect_to "/", notice: "Sorry, You don't have enough rights" if current_user.nil? || current_user.role?
     @cart = Cart.new()
     @cart = Cart.new(params.permit(:production_id, :user_id, :count, :sum))
     @carts = Cart.all
@@ -52,14 +57,14 @@ class CartsController < ApplicationController
   # PATCH/PUT /carts/1
   # PATCH/PUT /carts/1.json
   def update
-
+    redirect_to "/", notice: "Sorry, You don't have enough rights" if current_user.nil? || current_user.role?
     respond_to do |format|
       if @cart.update(cart_params) && @cart.production.count!=nil && @cart.production.count>@cart.count
         @history = History.new()
         @history.production=@cart.production
         @history.user=@cart.user
         @history.count=@cart.count
-        @history.sum=@cart.count*@cart.sum
+        @history.sum=@cart.count*@cart.production.price
         @history.save
         @cart.destroy
         format.html { redirect_to "/histories", notice: "Thank you for your purchase" }
@@ -74,6 +79,7 @@ class CartsController < ApplicationController
   # DELETE /carts/1
   # DELETE /carts/1.json
   def destroy
+      redirect_to "/", notice: "Sorry, You don't have enough rights" if current_user.nil? || current_user.role?
     @cart.destroy
     respond_to do |format|
       format.html { redirect_to carts_url, notice: 'Cart was successfully destroyed.' }

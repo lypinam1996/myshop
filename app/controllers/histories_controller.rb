@@ -4,26 +4,31 @@ class HistoriesController < ApplicationController
   # GET /histories
   # GET /histories.json
   def index
+    redirect_to "/", notice: "Sorry, You don't have enough rights" if current_user.nil? || current_user.role?
     @histories = History.all
   end
 
   # GET /histories/1
   # GET /histories/1.json
   def show
+    redirect_to "/", notice: "Sorry, You don't have enough rights" if current_user.nil? || current_user.role?
   end
 
   # GET /histories/new
   def new
+    redirect_to "/", notice: "Sorry, You don't have enough rights" if current_user.nil? || current_user.role?
     @history = History.new
   end
 
   # GET /histories/1/edit
   def edit
+    redirect_to "/", notice: "Sorry, You don't have enough rights" if current_user.nil? || current_user.role?
   end
 
   # POST /histories
   # POST /histories.json
   def create
+    redirect_to "/", notice: "Sorry, You don't have enough rights" if current_user.nil? || current_user.role?
     @history = History.new(history_params)
 
     respond_to do |format|
@@ -40,6 +45,7 @@ class HistoriesController < ApplicationController
   # PATCH/PUT /histories/1
   # PATCH/PUT /histories/1.json
   def update
+    redirect_to "/", notice: "Sorry, You don't have enough rights" if current_user.nil? || current_user.role?
     respond_to do |format|
       if @history.update(history_params)
         format.html { redirect_to @history, notice: 'History was successfully updated.' }
@@ -54,6 +60,7 @@ class HistoriesController < ApplicationController
   # DELETE /histories/1
   # DELETE /histories/1.json
   def destroy
+    redirect_to "/", notice: "Sorry, You don't have enough rights" if current_user.nil? || current_user.role?
     @history.destroy
     respond_to do |format|
       format.html { redirect_to histories_url, notice: 'History was successfully destroyed.' }

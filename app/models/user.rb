@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include Authority::UserAbilities
   has_many :carts, dependent: :destroy
   has_many :histories, dependent: :destroy
   # Include default devise modules. Others available are:

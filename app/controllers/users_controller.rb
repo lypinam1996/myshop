@@ -19,6 +19,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    redirect_to "/", notice: "Sorry, You don't have enough rights" if current_user.nil? || !current_user.role?
   end
 
   # POST /users
@@ -40,6 +41,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    redirect_to "/", notice: "Sorry, You don't have enough rights" if current_user.nil? || !current_user.role?
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
